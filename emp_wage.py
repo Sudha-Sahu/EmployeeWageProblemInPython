@@ -1,26 +1,27 @@
-# UC4-solving using switch case statement and calculating wage
+# UC5-calculating wages for a month
 
 import random
 
 # Constants
 WAGE_PER_HR = 20
-PART_TIME_HR = 4
-FULL_DAY_HR = 8
+IS_PART_TIME = 1
+IS_FULL_TIME = 2
+WORKING_DAY_PER_MONTH = 20
 
 print("Welcome to employee wage problem")
 
-# calculating the daily employee wage
-wage_full_day = WAGE_PER_HR * FULL_DAY_HR
-print('Wage per day in full time hr is : {}'.format(wage_full_day))
-
-# calculating the part-time employee wage
-part_time_emp_wage = WAGE_PER_HR * PART_TIME_HR
-print('Part Time Wage per day is : {}'.format(part_time_emp_wage))
-
-is_present = random.randint(0, 2)
-wage = {
-    0: {'is_present': 'absent', 'wage': 0, 'worked_hr': 0},
-    1: {'is_present': 'present-full-day', 'wage': wage_full_day, 'worked_hr': FULL_DAY_HR},
-    2: {'is_present': 'part-time', 'wage': part_time_emp_wage, 'worked_hr': PART_TIME_HR}
-}
-print("Employee daily wage : ", wage.get(is_present))
+day_count = 1
+total_wage = 0
+while day_count <= WORKING_DAY_PER_MONTH:
+    is_present = random.randint(0, 2)
+    if is_present == IS_PART_TIME:
+        working_day_hr = 4
+    elif is_present == IS_FULL_TIME:
+        working_day_hr = 8
+    else:
+        working_day_hr = 0
+    wage_per_day = working_day_hr * WAGE_PER_HR
+    print("Employee wage in day ",day_count," is : ", wage_per_day)
+    total_wage += wage_per_day
+    day_count += 1
+print("Employee total monthly wage is : ", total_wage)
